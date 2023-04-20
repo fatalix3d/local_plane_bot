@@ -1,5 +1,5 @@
 const TelegramApi = require('node-telegram-bot-api');
-const token = "6000741658:AAFbDipcdGjFyGvSw1sza5UYIfAnPItNekI";
+const token = "6229051464:AAEA0hgr5WIuQWiCJQm8C-DnXMj4zzCvt60";
 const bot = new TelegramApi(token, {polling:true});
 
 const FlyInfo = require('./flyInfo.js');
@@ -38,6 +38,8 @@ bot.on("message", async  msg => {
         return;
 
     console.log(msg);
+    return bot.sendMessage(chatId, 'Ок');
+
     await ParseCommands(msg.text.toLowerCase(), chatId, userId, userName);
 });
 
