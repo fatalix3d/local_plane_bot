@@ -10,15 +10,15 @@ const admins =[351029552, 103045];
 const axios = require('axios');
 
 const users = [
-    { id: "sasha_milokhov", airplanes: ["Cessna 150", "Zlin42M"] }, //sasha_milokhov
-    { id: "div_nokia", airplanes: ["Cessna 150"] },                 //div_nokia
+    { id: "sasha_milokhov", airplanes: ["Cessna 150", "Zlin42M"] }, //sasha_milokhov = 351029552
+    { id: "div_nokia", airplanes: ["Cessna 150"] },                 //div_nokia = 130543585
     { id: "PlanUragan150", airplanes: ["Cessna 150"] },             //PlanUragan150
-    { id: "OstLetin", airplanes: ["Cessna 150"] },                  //OstLetin
-    { id: "ippiart", airplanes: ["Cessna 150"] },                   //ippiart
-    { id: "AirAlex100", airplanes: ["Cessna 150", "Zlin42M"] },     //AirAlex100
-    { id: "dbsmirnov", airplanes: ["Cessna 150"] },                 //dbsmirnov
+    { id: "OstLetin", airplanes: ["Cessna 150"] },                  //OstLetin = 931282059
+    { id: "ippiart", airplanes: ["Cessna 150"] },                   //ippiart = 332568271
+    { id: "AirAlex100", airplanes: ["Cessna 150", "Zlin42M"] },     //AirAlex100 = 810476772
+    { id: "dbsmirnov", airplanes: ["Cessna 150"] },                 //dbsmirnov = 332568271
     { id: "levan_z", airplanes: ["Cessna 150", "Zlin42M"] },        //levan_z
-    { id: "ftx3d", airplanes: ["Cessna 150", "Zlin42M"] },          //ftx3d
+    { id: "ftx3d", airplanes: ["Cessna 150", "Zlin42M"] },          //ftx3d = 103045
 ];
 
 const userFlyInfo = [];
