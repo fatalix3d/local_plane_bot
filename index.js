@@ -10,15 +10,15 @@ const admins =[351029552, 103045];
 const axios = require('axios');
 
 const users = [
-    { id: "sasha_milokhov", airplanes: ["Cessna 150", "Zlin42M"] }, //sasha_milokhov = 351029552
-    { id: "div_nokia", airplanes: ["Cessna 150"] },                 //div_nokia = 130543585
+    { id: "351029552", airplanes: ["Cessna 150", "Zlin42M"] }, //sasha_milokhov = 351029552
+    { id: "130543585", airplanes: ["Cessna 150"] },                 //div_nokia = 130543585
     { id: "PlanUragan150", airplanes: ["Cessna 150"] },             //PlanUragan150
-    { id: "OstLetin", airplanes: ["Cessna 150"] },                  //OstLetin = 931282059
-    { id: "ippiart", airplanes: ["Cessna 150"] },                   //ippiart = 332568271
-    { id: "AirAlex100", airplanes: ["Cessna 150", "Zlin42M"] },     //AirAlex100 = 810476772
-    { id: "dbsmirnov", airplanes: ["Cessna 150"] },                 //dbsmirnov = 332568271
+    { id: "931282059", airplanes: ["Cessna 150"] },                  //OstLetin = 931282059
+    { id: "332568271", airplanes: ["Cessna 150"] },                   //ippiart = 332568271
+    { id: "810476772", airplanes: ["Cessna 150", "Zlin42M"] },     //AirAlex100 = 810476772
+    { id: "332568271", airplanes: ["Cessna 150"] },                 //dbsmirnov = 332568271
     { id: "levan_z", airplanes: ["Cessna 150", "Zlin42M"] },        //levan_z
-    { id: "ftx3d", airplanes: ["Cessna 150", "Zlin42M"] },          //ftx3d = 103045
+    { id: "351029552", airplanes: ["Cessna 150", "Zlin42M"] },          //ftx3d = 351029552
 ];
 
 const userFlyInfo = [];
@@ -38,7 +38,7 @@ bot.on("message", async  msg => {
         return;
 
     console.log(msg);
-    return bot.sendMessage(chatId, 'Ок');
+    //return bot.sendMessage(chatId, 'Ок');
 
     await ParseCommands(msg.text.toLowerCase(), chatId, userId, userName);
 });
@@ -98,7 +98,34 @@ bot.on('callback_query', async (query) => {
 
                     if(!userFlyInfo[chatId].HasNullValues()){
                         const jsonString = userFlyInfo[chatId].ToJSONString();
-                        await SendData(jsonString);
+                        //await SendData(jsonString);
+
+                        let data = jsonString;
+
+                        let config = {
+                            method: 'post',
+                            maxBodyLength: Infinity,
+                            url: 'https://localplane.ru/api/save',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Authorization': 'Bearer 1|uDYBAqRE1TzBTtDSc2XvEj7ZCJbxHvxTM3Om1VCw'
+                            },
+                            data : data
+                        };
+
+                        axios.request(config)
+                            .then((response) => {
+                                console.log(JSON.stringify(response.data));
+                            })
+                            .catch((error) => {
+                                console.log(error);
+                                if (error.response) {
+                                    console.log('Error body:', error.response.data);
+                                    return bot.sendMessage(chatId, `Ошибка. Такого пользователя нет`);
+                                } else {
+                                    console.log('Error:', error.message);
+                                }
+                            });
                     }
 
                     userFlyInfo[chatId].state = FlyState.START;
@@ -143,6 +170,7 @@ async function SendData(jsonString){
             //console.log(error);
             if (error.response) {
                 console.log('Error body:', error.response.data);
+                return bot.sendMessage(chatId, `Ошибка. Такого пользователя нет`);
             } else {
                 console.log('Error:', error.message);
             }
@@ -168,7 +196,7 @@ async function ParseCommands(message, chatId, userId, userName){
             userFlyStateExist(chatId, userId);
             userFlyInfo[chatId].state = FlyState.JET_SELECT;
 
-            const inlineKeyboard = createInlineKeyboard(userName);
+            const inlineKeyboard = createInlineKeyboard(userId.toString());
             let replyMarkup = null;
             replyMarkup = {
                 inline_keyboard: inlineKeyboard,
@@ -315,9 +343,38 @@ async function ParseCommands(message, chatId, userId, userName){
 
             if(!userFlyInfo[chatId].HasNullValues()){
                 const jsonString = userFlyInfo[chatId].ToJSONString();
-                await SendData(jsonString);
+                //await SendData(jsonString);
+
+                let data = jsonString;
+
+                let config = {
+                    method: 'post',
+                    maxBodyLength: Infinity,
+                    url: 'https://localplane.ru/api/save',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer 1|uDYBAqRE1TzBTtDSc2XvEj7ZCJbxHvxTM3Om1VCw'
+                    },
+                    data : data
+                };
+
+                axios.request(config)
+                    .then((response) => {
+                        console.log(JSON.stringify(response.data));
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                        if (error.response) {
+                            console.log('Error body:', error.response.data);
+                            return bot.sendMessage(chatId, `Ошибка. Такого пользователя нет`);
+                        } else {
+                            console.log('Error:', error.message);
+                        }
+                    });
             }
+
             userFlyInfo[chatId].state = FlyState.START;
+
             return  bot.sendMessage(chatId, 'Спасибо, ваши данные были сохранены.');
     }
 }
@@ -437,9 +494,9 @@ function userFlyStateExist(chatId, userId){
 }
 
 
-function createInlineKeyboard(userName) {
+function createInlineKeyboard(userId) {
 
-    const user = users.find(user => user.id === userName);
+    const user = users.find(user => user.id === userId);
     const airplanes = user ? user.airplanes : [];
     const options = airplanes.map(airplane => {
         return {
