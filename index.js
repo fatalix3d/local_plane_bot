@@ -10,13 +10,13 @@ const admins =[351029552, 103045];
 const axios = require('axios');
 
 const users = [
-    { id: "103045", airplanes: ["Cessna 150", "Zlin42M"] }, //sasha_milokhov = 351029552
+    { id: "103045", airplanes: ["Cessna 150", "Zlin42M"] }, //sasha_milokhov = 103045
     { id: "130543585", airplanes: ["Cessna 150"] },                 //div_nokia = 130543585
     { id: "PlanUragan150", airplanes: ["Cessna 150"] },             //PlanUragan150
     { id: "931282059", airplanes: ["Cessna 150"] },                  //OstLetin = 931282059
     { id: "332568271", airplanes: ["Cessna 150"] },                   //ippiart = 332568271
     { id: "810476772", airplanes: ["Cessna 150", "Zlin42M"] },     //AirAlex100 = 810476772
-    { id: "332568271", airplanes: ["Cessna 150"] },                 //dbsmirnov = 332568271
+    { id: "83069", airplanes: ["Cessna 150"] },                 //dbsmirnov = 83069
     { id: "levan_z", airplanes: ["Cessna 150", "Zlin42M"] },        //levan_z
     { id: "351029552", airplanes: ["Cessna 150", "Zlin42M"] },          //ftx3d = 351029552
 ];
