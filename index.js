@@ -17,7 +17,7 @@ const users = [
     { id: "332568271", airplanes: ["Cessna 150"] },                   //ippiart = 332568271
     { id: "810476772", airplanes: ["Cessna 150", "Zlin42M"] },     //AirAlex100 = 810476772
     { id: "83069", airplanes: ["Cessna 150"] },                 //dbsmirnov = 83069
-    { id: "levan_z", airplanes: ["Cessna 150", "Zlin42M"] },        //levan_z
+    { id: "115685484", airplanes: ["Cessna 150", "Zlin42M"] },        //levan_z = 115685484
     { id: "351029552", airplanes: ["Cessna 150", "Zlin42M"] },          //ftx3d = 351029552
 ];
 
