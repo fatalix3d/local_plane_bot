@@ -10,7 +10,7 @@ const admins =[351029552, 103045];
 const axios = require('axios');
 
 const users = [
-    { id: "351029552", airplanes: ["Cessna 150", "Zlin42M"] }, //sasha_milokhov = 351029552
+    { id: "103045", airplanes: ["Cessna 150", "Zlin42M"] }, //sasha_milokhov = 351029552
     { id: "130543585", airplanes: ["Cessna 150"] },                 //div_nokia = 130543585
     { id: "PlanUragan150", airplanes: ["Cessna 150"] },             //PlanUragan150
     { id: "931282059", airplanes: ["Cessna 150"] },                  //OstLetin = 931282059
