@@ -1,5 +1,5 @@
 const TelegramApi = require('node-telegram-bot-api');
-const token = "6229051464:AAEA0hgr5WIuQWiCJQm8C-DnXMj4zzCvt60";
+const token = "6229051464:AAHx_4phu8YXEL6VrZxqkQVTjC8Bigjfjaw";
 const bot = new TelegramApi(token, {polling:true});
 
 const FlyInfo = require('./flyInfo.js');
