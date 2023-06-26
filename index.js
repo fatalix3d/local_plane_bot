@@ -10,7 +10,7 @@ const admins =[351029552, 103045];
 const axios = require('axios');
 
 const users = [
-    { id: "103045", airplanes: ["Cessna 150", "Zlin42M"] }, //sasha_milokhov = 103045
+    { id: "103045", airplanes: ["Cessna 150", "Zlin42M"] },         //sasha_milokhov = 103045
     { id: "130543585", airplanes: ["Cessna 150"] },                 //div_nokia = 130543585
     { id: "PlanUragan150", airplanes: ["Cessna 150"] },             //PlanUragan150
     { id: "931282059", airplanes: ["Cessna 150"] },                  //OstLetin = 931282059
@@ -37,7 +37,7 @@ bot.on("message", async  msg => {
     if (msg.text === undefined)
         return;
 
-    console.log(msg);
+    //console.log(msg);
     //return bot.sendMessage(chatId, 'Ок');
 
     await ParseCommands(msg.text.toLowerCase(), chatId, userId, userName);
@@ -129,8 +129,7 @@ bot.on('callback_query', async (query) => {
                     }
 
                     userFlyInfo[chatId].state = FlyState.START;
-                    await bot.sendMessage(chatId, 'Спасибо, ваши данные были сохранены.');
-                    break;
+                    return  bot.sendMessage(chatId, 'Спасибо, ваши данные были сохранены.');
             }
         }
 
@@ -277,7 +276,8 @@ async function ParseCommands(message, chatId, userId, userName){
                 return bot.sendMessage(chatId, `Время вылета (UTC) в формате Часы,Минуты (ЧЧ:ММ) : `);
             }
 
-            userFlyInfo[chatId].start_time = parseTime(t1, userFlyInfo[chatId].flight_date);
+            //userFlyInfo[chatId].start_time = parseTime(t1, userFlyInfo[chatId].flight_date);
+            userFlyInfo[chatId].start_time = t1;
             userFlyInfo[chatId].state = FlyState.END_FLY_TIME;
             return bot.sendMessage(chatId, `Время посадки (UTC) в формате Часы,Минуты (ЧЧ:ММ) : `);
 
@@ -287,7 +287,8 @@ async function ParseCommands(message, chatId, userId, userName){
                 return bot.sendMessage(chatId, `Время посадки (UTC) в формате Часы,Минуты (ЧЧ:ММ) : `);
             }
 
-            userFlyInfo[chatId].end_time = parseTime(t2, userFlyInfo[chatId].flight_date);
+            //userFlyInfo[chatId].end_time = parseTime(t2, userFlyInfo[chatId].flight_date);
+            userFlyInfo[chatId].end_time = t2;
             userFlyInfo[chatId].state = FlyState.LANDING_COUNT;
             return bot.sendMessage(chatId, `Введите количество посадок : `);
 
@@ -340,12 +341,14 @@ async function ParseCommands(message, chatId, userId, userName){
 
         case FlyState.COMMENT.toLowerCase():
             userFlyInfo[chatId].comment = message;
-
+            console.log('111111111');
             if(!userFlyInfo[chatId].HasNullValues()){
                 const jsonString = userFlyInfo[chatId].ToJSONString();
                 //await SendData(jsonString);
 
                 let data = jsonString;
+                console.log('===============================');
+                console.log(data);
 
                 let config = {
                     method: 'post',

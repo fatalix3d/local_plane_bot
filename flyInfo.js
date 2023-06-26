@@ -38,7 +38,7 @@ class FlyInfo{
 
     ToJSONString() {
         const replacer = (key, value) => {
-            if (key === 'state' || key === 'user_id' || key === 'landing_count') {
+            if (key === 'state' || key === 'user_id') {
                 return undefined;
             }
             return value;
