@@ -12,7 +12,7 @@ const axios = require('axios');
 const users = [
     { id: "103045", airplanes: ["Cessna 150", "Zlin42M"] },         //sasha_milokhov = 103045
     { id: "130543585", airplanes: ["Cessna 150"] },                 //div_nokia = 130543585
-    { id: "PlanUragan150", airplanes: ["Cessna 150"] },             //PlanUragan150
+    { id: "250847465", airplanes: ["Cessna 150"] },             //PlanUragan150
     { id: "931282059", airplanes: ["Cessna 150"] },                  //OstLetin = 931282059
     { id: "332568271", airplanes: ["Cessna 150"] },                   //ippiart = 332568271
     { id: "810476772", airplanes: ["Cessna 150", "Zlin42M"] },     //AirAlex100 = 810476772
